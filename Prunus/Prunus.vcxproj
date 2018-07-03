@@ -127,6 +127,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="PlumCipherA.h" />
+    <ClInclude Include="PlumCommon.h" />
     <ClInclude Include="PlumConsole.h" />
     <ClInclude Include="PlumCrypt.h" />
     <ClInclude Include="PlumFile.h" />
