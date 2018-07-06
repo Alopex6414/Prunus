@@ -126,6 +126,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="PlumCat.h" />
     <ClInclude Include="PlumCipherA.h" />
     <ClInclude Include="PlumCommon.h" />
     <ClInclude Include="PlumConsole.h" />
@@ -141,6 +142,7 @@
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="PlumCat.cpp" />
     <ClCompile Include="PlumCipherA.cpp" />
     <ClCompile Include="PlumConsole.cpp" />
     <ClCompile Include="PlumCrypt.cpp" />
