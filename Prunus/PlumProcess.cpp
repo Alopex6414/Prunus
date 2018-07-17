@@ -6,8 +6,9 @@
 * @file		PlumProcess.cpp
 * @brief	This Program is PlumProcess DLL Project.
 * @author	Alopex/Helium
-* @version	v1.00a
+* @version	v1.01a
 * @date		2018-1-30	v1.00a	alopex	Create Project.
+* @date		2018-7-13	v1.01a	alopex	Add Static Function.
 */
 #include "PlumProcess.h"
 
@@ -472,6 +473,183 @@ BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessIsProcessExistA(const char * 
 // @Return: None
 //--------------------------------------------------------------------------
 BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessIsProcessExistW(const wchar_t * strProcessName)
+{
+	BOOL bRet = FALSE;
+	HANDLE hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+	if (hProcessSnap == INVALID_HANDLE_VALUE)
+	{
+		return FALSE;
+	}
+
+	PROCESSENTRY32 pe32 = { 0 };
+	pe32.dwSize = sizeof(PROCESSENTRY32);
+	if (Process32First(hProcessSnap, &pe32))
+	{
+		do {
+			if (_wcsicmp(pe32.szExeFile, strProcessName) == 0)
+			{
+				bRet = TRUE;
+				break;
+			}
+		} while (Process32Next(hProcessSnap, &pe32));
+	}
+	else {
+		bRet = FALSE;
+	}
+	CloseHandle(hProcessSnap);
+
+	return bRet;
+}
+
+//------------------------------------------------------------------
+// @Function:	 PlumProcessStartProcessA(const char* strProcessName)
+// @Purpose: PlumProcess启动进程
+// @Since: v1.00a
+// @Para: const char* strProcessName	//进程名称(ASCII)
+// @Return: None
+//------------------------------------------------------------------
+BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessStartProcessExA(const char * strProcessName)
+{
+	BOOL bRet = FALSE;
+
+	STARTUPINFOA si = { 0 };
+	ZeroMemory(&si, sizeof(si));
+	si.cb = sizeof(STARTUPINFOA);
+	GetStartupInfoA(&si);
+	si.wShowWindow = SW_SHOW;
+	si.dwFlags = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;
+
+	PROCESS_INFORMATION pi = { 0 };
+	ZeroMemory(&pi, sizeof(pi));
+
+	char chProcessPath[MAX_PATH] = { 0 };
+	char* pTemp = NULL;
+
+	GetModuleFileNameA(NULL, chProcessPath, MAX_PATH);
+	pTemp = strrchr(chProcessPath, '\\');
+	if (pTemp) *pTemp = '\0';
+	strcat_s(chProcessPath, "\\");
+	strcat_s(chProcessPath, strProcessName);
+
+	bRet = CreateProcessA(chProcessPath, NULL, NULL, NULL, FALSE, NULL, NULL, NULL, &si, &pi);
+
+	if (bRet)
+	{
+		::CloseHandle(pi.hThread);
+		::CloseHandle(pi.hProcess);
+	}
+
+	return bRet;
+}
+
+//------------------------------------------------------------------
+// @Function:	 PlumProcessStartProcessW(const wchar_t* strProcessName)
+// @Purpose: PlumProcess启动进程
+// @Since: v1.00a
+// @Para: const wchar_t* strProcessName		//进程名称(Unicode)
+// @Return: None
+//------------------------------------------------------------------
+BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessStartProcessExW(const wchar_t * strProcessName)
+{
+	BOOL bRet = FALSE;
+
+	int nSize = 0;
+	char* pstrProcessName = NULL;
+
+	nSize = ::WideCharToMultiByte(CP_ACP, 0, strProcessName, -1, NULL, 0, NULL, NULL);
+	pstrProcessName = new char[nSize + 1];
+	memset(pstrProcessName, 0, (nSize + 1) * sizeof(char));
+	::WideCharToMultiByte(CP_ACP, 0, strProcessName, -1, pstrProcessName, nSize, NULL, NULL);
+
+
+	STARTUPINFOA si = { 0 };
+	ZeroMemory(&si, sizeof(si));
+	si.cb = sizeof(STARTUPINFOA);
+	GetStartupInfoA(&si);
+	si.wShowWindow = SW_SHOW;
+	si.dwFlags = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;
+
+	PROCESS_INFORMATION pi = { 0 };
+	ZeroMemory(&pi, sizeof(pi));
+
+	char chProcessPath[MAX_PATH] = { 0 };
+	char* pTemp = NULL;
+
+	GetModuleFileNameA(NULL, chProcessPath, MAX_PATH);
+	pTemp = strrchr(chProcessPath, '\\');
+	if (pTemp) *pTemp = '\0';
+	strcat_s(chProcessPath, "\\");
+	strcat_s(chProcessPath, pstrProcessName);
+
+	bRet = CreateProcessA(chProcessPath, NULL, NULL, NULL, FALSE, NULL, NULL, NULL, &si, &pi);
+
+	if (bRet)
+	{
+		::CloseHandle(pi.hThread);
+		::CloseHandle(pi.hProcess);
+	}
+
+	delete[] pstrProcessName;
+	pstrProcessName = NULL;
+
+	return bRet;
+}
+
+//--------------------------------------------------------------------------
+// @Function:	 PlumProcessIsProcessExistA(const char* strProcessName)
+// @Purpose: PlumProcess检测进程是否存在
+// @Since: v1.00a
+// @Para: const char* strProcessName	//进程名称(ASCII)
+// @Return: None
+//--------------------------------------------------------------------------
+BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessIsProcessExistExA(const char * strProcessName)
+{
+	BOOL bRet = FALSE;
+	HANDLE hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+	if (hProcessSnap == INVALID_HANDLE_VALUE)
+	{
+		return FALSE;
+	}
+
+	int nSize = 0;
+	wchar_t* pstrProcessName = NULL;
+
+	nSize = ::MultiByteToWideChar(CP_ACP, 0, strProcessName, -1, NULL, NULL);
+	pstrProcessName = new wchar_t[nSize + 1];
+	memset(pstrProcessName, 0, (nSize + 1) * sizeof(wchar_t));
+	::MultiByteToWideChar(CP_ACP, 0, strProcessName, -1, (LPWSTR)pstrProcessName, nSize);
+
+	PROCESSENTRY32 pe32 = { 0 };
+	pe32.dwSize = sizeof(PROCESSENTRY32);
+	if (Process32First(hProcessSnap, &pe32))
+	{
+		do {
+			if (_wcsicmp(pe32.szExeFile, pstrProcessName) == 0)
+			{
+				bRet = TRUE;
+				break;
+			}
+		} while (Process32Next(hProcessSnap, &pe32));
+	}
+	else {
+		bRet = FALSE;
+	}
+	CloseHandle(hProcessSnap);
+
+	delete[] pstrProcessName;
+	pstrProcessName = NULL;
+
+	return bRet;
+}
+
+//--------------------------------------------------------------------------
+// @Function:	 PlumProcessIsProcessExistW(const wchar_t* strProcessName)
+// @Purpose: PlumProcess检测进程是否存在
+// @Since: v1.00a
+// @Para: const char* strProcessName	//进程名称(Unicode)
+// @Return: None
+//--------------------------------------------------------------------------
+BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessIsProcessExistExW(const wchar_t * strProcessName)
 {
 	BOOL bRet = FALSE;
 	HANDLE hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
