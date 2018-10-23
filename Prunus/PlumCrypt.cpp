@@ -6,10 +6,11 @@
 * @file		PlumCrypt.cpp
 * @brief	This Program is PlumCrypt DLL Project.
 * @author	Alopex/Helium
-* @version	v1.02a
+* @version	v1.03a
 * @date		2017-12-13	v1.00a	alopex	Create Project.
 * @date		2017-12-17	v1.01a	alopex	Add Function EnCrypt/DeCrypt In Memory.
 * @date		2018-07-05	v1.02a	alopex	Add Function Crypt Cat Function.
+* @date		2018-10-23	v1.03a	alopex	Alter Call Method.
 */
 #include "PlumCrypt.h"
 
@@ -48,7 +49,7 @@ CPlumCrypt::~CPlumCrypt()
 // @Para: DWORD* pArrSize		//数组长度指针
 // @Return: None
 //------------------------------------------------------------------
-void PLUMCRYPT_CALLMODE CPlumCrypt::PlumGetArray(char** ppArr, DWORD* pArrSize) const
+void PLUMCRYPT_CALLMETHOD CPlumCrypt::PlumGetArray(char** ppArr, DWORD* pArrSize) const
 {
 	*ppArr = m_pArray;
 	*pArrSize = m_dwArrSize;
@@ -61,7 +62,7 @@ void PLUMCRYPT_CALLMODE CPlumCrypt::PlumGetArray(char** ppArr, DWORD* pArrSize) 
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-void PLUMCRYPT_CALLMODE CPlumCrypt::PlumEnCryptFileA(const char* pSrc, const char* pDest, DWORD* pLuckyArr)
+void PLUMCRYPT_CALLMETHOD CPlumCrypt::PlumEnCryptFileA(const char* pSrc, const char* pDest, DWORD* pLuckyArr)
 {
 	FILE* fin;
 	FILE* fou;
@@ -138,7 +139,7 @@ void PLUMCRYPT_CALLMODE CPlumCrypt::PlumEnCryptFileA(const char* pSrc, const cha
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-void PLUMCRYPT_CALLMODE CPlumCrypt::PlumDeCryptFileA(const char* pSrc, const char* pDest, DWORD* pLuckyArr)
+void PLUMCRYPT_CALLMETHOD CPlumCrypt::PlumDeCryptFileA(const char* pSrc, const char* pDest, DWORD* pLuckyArr)
 {
 	FILE* fin;
 	FILE* fou;
@@ -208,7 +209,7 @@ void PLUMCRYPT_CALLMODE CPlumCrypt::PlumDeCryptFileA(const char* pSrc, const cha
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-void PLUMCRYPT_CALLMODE CPlumCrypt::PlumEnCryptFileExA(const char* pSrc, const char* pDest, DWORD* pLuckyArr)
+void PLUMCRYPT_CALLMETHOD CPlumCrypt::PlumEnCryptFileExA(const char* pSrc, const char* pDest, DWORD* pLuckyArr)
 {
 	HANDLE hFileSrc;
 	HANDLE hFileDest;
@@ -350,7 +351,7 @@ void PLUMCRYPT_CALLMODE CPlumCrypt::PlumEnCryptFileExA(const char* pSrc, const c
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-void PLUMCRYPT_CALLMODE CPlumCrypt::PlumDeCryptFileExA(const char* pSrc, const char* pDest)
+void PLUMCRYPT_CALLMETHOD CPlumCrypt::PlumDeCryptFileExA(const char* pSrc, const char* pDest)
 {
 	HANDLE hFileSrc;
 	HANDLE hFileDest;
@@ -461,7 +462,7 @@ void PLUMCRYPT_CALLMODE CPlumCrypt::PlumDeCryptFileExA(const char* pSrc, const c
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-void PLUMCRYPT_CALLMODE CPlumCrypt::PlumDeCryptFileNoExA(const char* pSrc, const char* pDest)
+void PLUMCRYPT_CALLMETHOD CPlumCrypt::PlumDeCryptFileNoExA(const char* pSrc, const char* pDest)
 {
 	HANDLE hFileSrc;
 	HANDLE hFileDest;
@@ -596,7 +597,7 @@ void PLUMCRYPT_CALLMODE CPlumCrypt::PlumDeCryptFileNoExA(const char* pSrc, const
 // @Para: DWORD* pLuckyArr			//加密密码指针
 // @Return: None
 //-------------------------------------------------------------------------------------------------
-void PLUMCRYPT_CALLMODE CPlumCrypt::PlumEnCryptFileExtractFromMemoryExA(const char* pDest, DWORD* pLuckyArr)
+void PLUMCRYPT_CALLMETHOD CPlumCrypt::PlumEnCryptFileExtractFromMemoryExA(const char* pDest, DWORD* pLuckyArr)
 {
 	HANDLE hFileDest;
 	HANDLE hFileMsg;
@@ -752,7 +753,7 @@ void PLUMCRYPT_CALLMODE CPlumCrypt::PlumEnCryptFileExtractFromMemoryExA(const ch
 // @Para: DWORD* pLuckyArr			//加密密码指针
 // @Return: None
 //-------------------------------------------------------------------------------------------------------------------------
-void PLUMCRYPT_CALLMODE CPlumCrypt::PlumEnCryptFileExtractFromMemoryExA(const char * pDest, const void * pArray, int nSize, DWORD * pLuckyArr)
+void PLUMCRYPT_CALLMETHOD CPlumCrypt::PlumEnCryptFileExtractFromMemoryExA(const char * pDest, const void * pArray, int nSize, DWORD * pLuckyArr)
 {
 	HANDLE hFileDest;
 	HANDLE hFileMsg;
@@ -906,7 +907,7 @@ void PLUMCRYPT_CALLMODE CPlumCrypt::PlumEnCryptFileExtractFromMemoryExA(const ch
 // @Para: const char* pSrc			//解密文件地址
 // @Return: None
 //-------------------------------------------------------------------------------------------------
-void PLUMCRYPT_CALLMODE CPlumCrypt::PlumDeCryptFileStoreInMemoryExA(const char* pSrc)
+void PLUMCRYPT_CALLMETHOD CPlumCrypt::PlumDeCryptFileStoreInMemoryExA(const char* pSrc)
 {
 	HANDLE hFileSrc;
 	HANDLE hFileMsg;
@@ -1012,7 +1013,7 @@ void PLUMCRYPT_CALLMODE CPlumCrypt::PlumDeCryptFileStoreInMemoryExA(const char* 
 // @Para: int nSize					//目标数组长度
 // @Return: None
 //-------------------------------------------------------------------------------------------------
-void PLUMCRYPT_CALLMODE CPlumCrypt::PlumDeCryptFileStoreInMemoryExA(const char * pSrc, const void * pArray, int nSize)
+void PLUMCRYPT_CALLMETHOD CPlumCrypt::PlumDeCryptFileStoreInMemoryExA(const char * pSrc, const void * pArray, int nSize)
 {
 	HANDLE hFileSrc;
 	HANDLE hFileMsg;
@@ -1120,7 +1121,7 @@ void PLUMCRYPT_CALLMODE CPlumCrypt::PlumDeCryptFileStoreInMemoryExA(const char *
 // @Para: const char* pDest					//目标文件地址
 // @Return: None
 //-------------------------------------------------------------------------------------------------
-void PLUMCRYPT_CALLMODE CPlumCrypt::PlumDeCryptFileInMemoryStoreInFileExA(const void* pArray, PlumFileInfo sSrcArrayInfo, const char* pDest)
+void PLUMCRYPT_CALLMETHOD CPlumCrypt::PlumDeCryptFileInMemoryStoreInFileExA(const void* pArray, PlumFileInfo sSrcArrayInfo, const char* pDest)
 {
 	HANDLE hFileDest;
 
@@ -1209,7 +1210,7 @@ void PLUMCRYPT_CALLMODE CPlumCrypt::PlumDeCryptFileInMemoryStoreInFileExA(const 
 // @Para: PlumFileInfo sSrcArrInfo			//文件信息结构体
 // @Return: None
 //-------------------------------------------------------------------------------------------------
-void PLUMCRYPT_CALLMODE CPlumCrypt::PlumDeCryptFileInMemoryStoreInMemoryExA(const void* pArray, PlumFileInfo sSrcArrayInfo)
+void PLUMCRYPT_CALLMETHOD CPlumCrypt::PlumDeCryptFileInMemoryStoreInMemoryExA(const void* pArray, PlumFileInfo sSrcArrayInfo)
 {
 	CPlumCipherA* pCode = new CPlumCipherA((unsigned char*)(sSrcArrayInfo.dwLuckyNum));
 	unsigned char* pSrcArr = NULL;
