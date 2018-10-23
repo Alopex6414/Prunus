@@ -6,8 +6,9 @@
 * @file		PlumLogEx.cpp
 * @brief	This Program is PlumLogEx DLL Project.
 * @author	Alopex/Helium
-* @version	v1.00a
+* @version	v1.01a
 * @date		2018-10-22	v1.00a	alopex	Create Project.
+* @date		2018-10-23	v1.01a	alopex	Alter Call Method.
 */
 #include "PlumLogEx.h"
 
