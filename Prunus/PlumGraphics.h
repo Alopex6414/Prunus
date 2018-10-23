@@ -6,9 +6,10 @@
 * @file		PlumGraphics.h
 * @brief	This Program is PlumGraphics DLL Project.
 * @author	Alopex/Helium
-* @version	v1.01a
+* @version	v1.02a
 * @date		2017-12-28	v1.00a	alopex	Create Project.
 * @date		2018-07-25	v1.01a	alopex	Add Call Mode.
+* @date		2018-10-23	v1.02a	alopex	Alter Call Method.
 */
 #pragma once
 
@@ -25,7 +26,7 @@
 #define PLUMGRAPHICS_API	__declspec(dllimport)
 #endif
 
-#define PLUMGRAPHICS_CALLMODE	__stdcall
+#define PLUMGRAPHICS_CALLMETHOD	__stdcall
 
 //Macro Pointer
 #define SAFE_DELETE(Pointer)	{if(Pointer){delete(Pointer);(Pointer) = NULL;}}
@@ -64,31 +65,31 @@ public:
 	CPlumGraphics(HWND hWnd, RECT sRect);			//PlumGraphics Construction Function(GDI构造函数)
 
 	//控制
-	virtual void PLUMGRAPHICS_CALLMODE PlumGraphicsSetHandle(HWND hWnd);	//PlumGraphics Set Handle(GDI设置窗口句柄)
-	virtual void PLUMGRAPHICS_CALLMODE PlumGraphicsSetRect(RECT sRect);	//PlumGraphics Set Rect(GDI设置窗口区域)
+	virtual void PLUMGRAPHICS_CALLMETHOD PlumGraphicsSetHandle(HWND hWnd);	//PlumGraphics Set Handle(GDI设置窗口句柄)
+	virtual void PLUMGRAPHICS_CALLMETHOD PlumGraphicsSetRect(RECT sRect);	//PlumGraphics Set Rect(GDI设置窗口区域)
 
 	//访问
-	virtual HWND PLUMGRAPHICS_CALLMODE PlumGraphicsGetHandle(void) const;	//PlumGraphics Get Handle(GDI获取窗口句柄)
-	virtual RECT PLUMGRAPHICS_CALLMODE PlumGraphicsGetRect(void) const;	//PlumGraphics Get Rect(GDI获取窗口区域)
+	virtual HWND PLUMGRAPHICS_CALLMETHOD PlumGraphicsGetHandle(void) const;	//PlumGraphics Get Handle(GDI获取窗口句柄)
+	virtual RECT PLUMGRAPHICS_CALLMETHOD PlumGraphicsGetRect(void) const;	//PlumGraphics Get Rect(GDI获取窗口区域)
 
 	//绘制
 	//直线
-	virtual void PLUMGRAPHICS_CALLMODE PlumGraphicsDrawLine(int nStartX, int nStartY, int nEndX, int nEndY);														//PlumGraphics Draw Line(GDI绘制直线)
-	virtual void PLUMGRAPHICS_CALLMODE PlumGraphicsDrawLine(PlumPoint sStart, PlumPoint sEnd);																	//PlumGraphics Draw Line(GDI绘制直线)
-	virtual void PLUMGRAPHICS_CALLMODE PlumGraphicsDrawLine(PlumPoint sStart, PlumPoint sEnd, PlumPenType ePenType, int nWidth, COLORREF crColor);				//PlumGraphics Draw Line(GDI绘制直线)
-	virtual void PLUMGRAPHICS_CALLMODE PlumGraphicsDrawLineOnOriginal(int nStartX, int nStartY, int nEndX, int nEndY);											//PlumGraphics Draw Line(GDI绘制直线)
-	virtual void PLUMGRAPHICS_CALLMODE PlumGraphicsDrawLineOnOriginal(PlumPoint sStart, PlumPoint sEnd);															//PlumGraphics Draw Line(GDI绘制直线)
-	virtual void PLUMGRAPHICS_CALLMODE PlumGraphicsDrawLineOnOriginal(PlumPoint sStart, PlumPoint sEnd, PlumPenType ePenType, int nPenWidth, COLORREF crColor);	//PlumGraphics Draw Line(GDI绘制直线)
+	virtual void PLUMGRAPHICS_CALLMETHOD PlumGraphicsDrawLine(int nStartX, int nStartY, int nEndX, int nEndY);														//PlumGraphics Draw Line(GDI绘制直线)
+	virtual void PLUMGRAPHICS_CALLMETHOD PlumGraphicsDrawLine(PlumPoint sStart, PlumPoint sEnd);																	//PlumGraphics Draw Line(GDI绘制直线)
+	virtual void PLUMGRAPHICS_CALLMETHOD PlumGraphicsDrawLine(PlumPoint sStart, PlumPoint sEnd, PlumPenType ePenType, int nWidth, COLORREF crColor);				//PlumGraphics Draw Line(GDI绘制直线)
+	virtual void PLUMGRAPHICS_CALLMETHOD PlumGraphicsDrawLineOnOriginal(int nStartX, int nStartY, int nEndX, int nEndY);											//PlumGraphics Draw Line(GDI绘制直线)
+	virtual void PLUMGRAPHICS_CALLMETHOD PlumGraphicsDrawLineOnOriginal(PlumPoint sStart, PlumPoint sEnd);															//PlumGraphics Draw Line(GDI绘制直线)
+	virtual void PLUMGRAPHICS_CALLMETHOD PlumGraphicsDrawLineOnOriginal(PlumPoint sStart, PlumPoint sEnd, PlumPenType ePenType, int nPenWidth, COLORREF crColor);	//PlumGraphics Draw Line(GDI绘制直线)
 
 	//矩形
-	virtual void PLUMGRAPHICS_CALLMODE PlumGraphicsDrawRectangle(int nX, int nY, int nWidth, int nHeight);														//PlumGraphics Draw Rectangle(GDI绘制矩形)
-	virtual void PLUMGRAPHICS_CALLMODE PlumGraphicsDrawRectangle(RECT sRect);																						//PlumGraphics Draw Rectangle(GDI绘制矩形)
-	virtual void PLUMGRAPHICS_CALLMODE PlumGraphicsDrawRectangle(RECT sRect, PlumPenType ePenType, int nWidth, COLORREF crColor);									//PlumGraphics Draw Rectangle(GDI绘制矩形)
-	virtual void PLUMGRAPHICS_CALLMODE PlumGraphicsDrawRectangle(RECT sRect, PlumPenType ePenType, int nWidth, COLORREF crColorPen, COLORREF crColorBrush);		//PlumGraphics Draw Rectangle(GDI绘制矩形)
-	virtual void PLUMGRAPHICS_CALLMODE PlumGraphicsDrawRectangleOnOriginal(int nX, int nY, int nWidth, int nHeight);												//PlumGraphics Draw Rectangle(GDI绘制矩形)
-	virtual void PLUMGRAPHICS_CALLMODE PlumGraphicsDrawRectangleOnOriginal(RECT sRect);																			//PlumGraphics Draw Rectangle(GDI绘制矩形)
-	virtual void PLUMGRAPHICS_CALLMODE PlumGraphicsDrawRectangleOnOriginal(RECT sRect, PlumPenType ePenType, int nPenWidth, COLORREF crPenColor);					//PlumGraphics Draw Rectangle(GDI绘制矩形)
-	virtual void PLUMGRAPHICS_CALLMODE PlumGraphicsDrawRectangleOnOriginal(RECT sRect, PlumPenType ePenType, int nPenWidth, COLORREF crPenColor, COLORREF crBrushColor);	//PlumGraphics Draw Rectangle(GDI绘制矩形)
+	virtual void PLUMGRAPHICS_CALLMETHOD PlumGraphicsDrawRectangle(int nX, int nY, int nWidth, int nHeight);														//PlumGraphics Draw Rectangle(GDI绘制矩形)
+	virtual void PLUMGRAPHICS_CALLMETHOD PlumGraphicsDrawRectangle(RECT sRect);																						//PlumGraphics Draw Rectangle(GDI绘制矩形)
+	virtual void PLUMGRAPHICS_CALLMETHOD PlumGraphicsDrawRectangle(RECT sRect, PlumPenType ePenType, int nWidth, COLORREF crColor);									//PlumGraphics Draw Rectangle(GDI绘制矩形)
+	virtual void PLUMGRAPHICS_CALLMETHOD PlumGraphicsDrawRectangle(RECT sRect, PlumPenType ePenType, int nWidth, COLORREF crColorPen, COLORREF crColorBrush);		//PlumGraphics Draw Rectangle(GDI绘制矩形)
+	virtual void PLUMGRAPHICS_CALLMETHOD PlumGraphicsDrawRectangleOnOriginal(int nX, int nY, int nWidth, int nHeight);												//PlumGraphics Draw Rectangle(GDI绘制矩形)
+	virtual void PLUMGRAPHICS_CALLMETHOD PlumGraphicsDrawRectangleOnOriginal(RECT sRect);																			//PlumGraphics Draw Rectangle(GDI绘制矩形)
+	virtual void PLUMGRAPHICS_CALLMETHOD PlumGraphicsDrawRectangleOnOriginal(RECT sRect, PlumPenType ePenType, int nPenWidth, COLORREF crPenColor);					//PlumGraphics Draw Rectangle(GDI绘制矩形)
+	virtual void PLUMGRAPHICS_CALLMETHOD PlumGraphicsDrawRectangleOnOriginal(RECT sRect, PlumPenType ePenType, int nPenWidth, COLORREF crPenColor, COLORREF crBrushColor);	//PlumGraphics Draw Rectangle(GDI绘制矩形)
 
 };
 

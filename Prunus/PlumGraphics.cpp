@@ -6,9 +6,10 @@
 * @file		PlumGraphics.cpp
 * @brief	This Program is PlumGraphics DLL Project.
 * @author	Alopex/Helium
-* @version	v1.01a
+* @version	v1.02a
 * @date		2017-12-28	v1.00a	alopex	Create Project.
 * @date		2018-07-25	v1.01a	alopex	Add Call Mode.
+* @date		2018-10-23	v1.02a	alopex	Alter Call Method.
 */
 #include "PlumGraphics.h"
 
@@ -56,7 +57,7 @@ CPlumGraphics::CPlumGraphics(HWND hWnd, RECT sRect)
 // @Para: HWND hWnd			//窗口句柄
 // @Return: None
 //------------------------------------------------------------------
-void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsSetHandle(HWND hWnd)
+void PLUMGRAPHICS_CALLMETHOD CPlumGraphics::PlumGraphicsSetHandle(HWND hWnd)
 {
 	m_hWnd = hWnd;
 }
@@ -68,7 +69,7 @@ void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsSetHandle(HWND hWnd)
 // @Para: RECT sRect		//窗口区域
 // @Return: None
 //------------------------------------------------------------------
-void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsSetRect(RECT sRect)
+void PLUMGRAPHICS_CALLMETHOD CPlumGraphics::PlumGraphicsSetRect(RECT sRect)
 {
 	m_sRect = sRect;
 }
@@ -80,7 +81,7 @@ void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsSetRect(RECT sRect)
 // @Para: None
 // @Return: HWND (窗口句柄)
 //------------------------------------------------------------------
-HWND PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsGetHandle(void) const
+HWND PLUMGRAPHICS_CALLMETHOD CPlumGraphics::PlumGraphicsGetHandle(void) const
 {
 	return m_hWnd;
 }
@@ -92,7 +93,7 @@ HWND PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsGetHandle(void) const
 // @Para: RECT sRect		//窗口区域
 // @Return: None
 //------------------------------------------------------------------
-RECT PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsGetRect(void) const
+RECT PLUMGRAPHICS_CALLMETHOD CPlumGraphics::PlumGraphicsGetRect(void) const
 {
 	return m_sRect;
 }
@@ -107,7 +108,7 @@ RECT PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsGetRect(void) const
 // @Para: int nEndY			//结束点Y坐标
 // @Return: None
 //-----------------------------------------------------------------------------------
-void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawLine(int nStartX, int nStartY, int nEndX, int nEndY)
+void PLUMGRAPHICS_CALLMETHOD CPlumGraphics::PlumGraphicsDrawLine(int nStartX, int nStartY, int nEndX, int nEndY)
 {
 	HDC hDC;
 	HPEN hPen;
@@ -131,7 +132,7 @@ void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawLine(int nStartX, int 
 // @Para: PlumPoint sEnd		//结束坐标点
 // @Return: None
 //-----------------------------------------------------------------------------------
-void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawLine(PlumPoint sStart, PlumPoint sEnd)
+void PLUMGRAPHICS_CALLMETHOD CPlumGraphics::PlumGraphicsDrawLine(PlumPoint sStart, PlumPoint sEnd)
 {
 	HDC hDC;
 	HPEN hPen;
@@ -158,7 +159,7 @@ void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawLine(PlumPoint sStart,
 // @Para: COLORREF crColor		//画笔颜色
 // @Return: None
 //-------------------------------------------------------------------------------------------------------------------------
-void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawLine(PlumPoint sStart, PlumPoint sEnd, PlumPenType ePenType, int nWidth, COLORREF crColor)
+void PLUMGRAPHICS_CALLMETHOD CPlumGraphics::PlumGraphicsDrawLine(PlumPoint sStart, PlumPoint sEnd, PlumPenType ePenType, int nWidth, COLORREF crColor)
 {
 	HDC hDC;
 	HPEN hPen;
@@ -205,7 +206,7 @@ void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawLine(PlumPoint sStart,
 // @Para: int nEndY			//结束点Y坐标
 // @Return: None
 //---------------------------------------------------------------------------------------------
-void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawLineOnOriginal(int nStartX, int nStartY, int nEndX, int nEndY)
+void PLUMGRAPHICS_CALLMETHOD CPlumGraphics::PlumGraphicsDrawLineOnOriginal(int nStartX, int nStartY, int nEndX, int nEndY)
 {
 	HDC hDC;
 	HDC hMemDC;
@@ -243,7 +244,7 @@ void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawLineOnOriginal(int nSt
 // @Para: PlumPoint sEnd		//结束坐标点
 // @Return: None
 //-------------------------------------------------------------------------------
-void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawLineOnOriginal(PlumPoint sStart, PlumPoint sEnd)
+void PLUMGRAPHICS_CALLMETHOD CPlumGraphics::PlumGraphicsDrawLineOnOriginal(PlumPoint sStart, PlumPoint sEnd)
 {
 	HDC hDC;
 	HDC hMemDC;
@@ -284,7 +285,7 @@ void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawLineOnOriginal(PlumPoi
 // @Para: COLORREF crColor		//画笔颜色
 // @Return: None
 //-----------------------------------------------------------------------------------------------------------------------------------
-void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawLineOnOriginal(PlumPoint sStart, PlumPoint sEnd, PlumPenType ePenType, int nPenWidth, COLORREF crColor)
+void PLUMGRAPHICS_CALLMETHOD CPlumGraphics::PlumGraphicsDrawLineOnOriginal(PlumPoint sStart, PlumPoint sEnd, PlumPenType ePenType, int nPenWidth, COLORREF crColor)
 {
 	HDC hDC;
 	HDC hMemDC;
@@ -345,7 +346,7 @@ void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawLineOnOriginal(PlumPoi
 // @Para: int nHeight			//绘制矩形高度
 // @Return: None
 //--------------------------------------------------------------------------------------
-void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawRectangle(int nX, int nY, int nWidth, int nHeight)
+void PLUMGRAPHICS_CALLMETHOD CPlumGraphics::PlumGraphicsDrawRectangle(int nX, int nY, int nWidth, int nHeight)
 {
 	HDC hDC;
 	HPEN hPen;
@@ -370,7 +371,7 @@ void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawRectangle(int nX, int 
 // @Para: int nHeight			//绘制矩形高度
 // @Return: None
 //--------------------------------------------------------------------------------------
-void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawRectangle(RECT sRect)
+void PLUMGRAPHICS_CALLMETHOD CPlumGraphics::PlumGraphicsDrawRectangle(RECT sRect)
 {
 	HDC hDC;
 	HPEN hPen;
@@ -395,7 +396,7 @@ void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawRectangle(RECT sRect)
 // @Para: COLORREF crColor		//绘制画笔颜色
 // @Return: None
 //--------------------------------------------------------------------------------------------------------
-void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawRectangle(RECT sRect, PlumPenType ePenType, int nWidth, COLORREF crColor)
+void PLUMGRAPHICS_CALLMETHOD CPlumGraphics::PlumGraphicsDrawRectangle(RECT sRect, PlumPenType ePenType, int nWidth, COLORREF crColor)
 {
 	HDC hDC;
 	HPEN hPen;
@@ -442,7 +443,7 @@ void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawRectangle(RECT sRect, 
 // @Para: COLORREF crColorBrush	//绘制画刷颜色
 // @Return: None
 //----------------------------------------------------------------------------------------------------------------------------------
-void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawRectangle(RECT sRect, PlumPenType ePenType, int nWidth, COLORREF crColorPen, COLORREF crColorBrush)
+void PLUMGRAPHICS_CALLMETHOD CPlumGraphics::PlumGraphicsDrawRectangle(RECT sRect, PlumPenType ePenType, int nWidth, COLORREF crColorPen, COLORREF crColorBrush)
 {
 	HDC hDC;
 	HPEN hPen;
@@ -493,7 +494,7 @@ void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawRectangle(RECT sRect, 
 // @Para: int nHeight			//绘制矩形高度
 // @Return: None
 //-------------------------------------------------------------------------------------------
-void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawRectangleOnOriginal(int nX, int nY, int nWidth, int nHeight)
+void PLUMGRAPHICS_CALLMETHOD CPlumGraphics::PlumGraphicsDrawRectangleOnOriginal(int nX, int nY, int nWidth, int nHeight)
 {
 	HDC hDC;
 	HDC hMemDC;
@@ -527,7 +528,7 @@ void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawRectangleOnOriginal(in
 // @Para: int nHeight			//绘制矩形高度
 // @Return: None
 //--------------------------------------------------------------------------------------
-void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawRectangleOnOriginal(RECT sRect)
+void PLUMGRAPHICS_CALLMETHOD CPlumGraphics::PlumGraphicsDrawRectangleOnOriginal(RECT sRect)
 {
 	HDC hDC;
 	HDC hMemDC;
@@ -566,7 +567,7 @@ void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawRectangleOnOriginal(RE
 // @Para: COLORREF crColor		//绘制画笔颜色
 // @Return: None
 //--------------------------------------------------------------------------------------------------------
-void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawRectangleOnOriginal(RECT sRect, PlumPenType ePenType, int nPenWidth, COLORREF crPenColor)
+void PLUMGRAPHICS_CALLMETHOD CPlumGraphics::PlumGraphicsDrawRectangleOnOriginal(RECT sRect, PlumPenType ePenType, int nPenWidth, COLORREF crPenColor)
 {
 	HDC hDC;
 	HDC hMemDC;
@@ -627,7 +628,7 @@ void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawRectangleOnOriginal(RE
 // @Para: COLORREF crColorBrush	//绘制画刷颜色
 // @Return: None
 //----------------------------------------------------------------------------------------------------------------------------------
-void PLUMGRAPHICS_CALLMODE CPlumGraphics::PlumGraphicsDrawRectangleOnOriginal(RECT sRect, PlumPenType ePenType, int nPenWidth, COLORREF crPenColor, COLORREF crBrushColor)
+void PLUMGRAPHICS_CALLMETHOD CPlumGraphics::PlumGraphicsDrawRectangleOnOriginal(RECT sRect, PlumPenType ePenType, int nPenWidth, COLORREF crPenColor, COLORREF crBrushColor)
 {
 	HDC hDC;
 	HDC hMemDC;
