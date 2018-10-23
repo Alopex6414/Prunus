@@ -6,9 +6,10 @@
 * @file		PlumPath.cpp
 * @brief	This Program is PlumPath DLL Project.
 * @author	Alopex/Helium
-* @version	v1.01a
+* @version	v1.02a
 * @date		2018-01-18	v1.00a	alopex	Create Project.
 * @date		2018-07-10	v1.01a	alopex	Add Function.
+* @date		2018-10-23	v1.02a	alopex	Alter Call Method.
 */
 #include "PlumPath.h"
 
@@ -45,7 +46,7 @@ CPlumPath::~CPlumPath()
 // @Para: int nSize				// 目标数组长度
 // @Return: BOOL(true:成功, false:失败)
 //------------------------------------------------------------------
-BOOL PLUMPATH_CALLMODE CPlumPath::PlumPathConvertA2W(const char* szArr, const wchar_t* wszArr, int nSize)
+BOOL PLUMPATH_CALLMETHOD CPlumPath::PlumPathConvertA2W(const char* szArr, const wchar_t* wszArr, int nSize)
 {
 	int nSrcSize = 0;
 	wchar_t* pwszArr = NULL;
@@ -73,7 +74,7 @@ BOOL PLUMPATH_CALLMODE CPlumPath::PlumPathConvertA2W(const char* szArr, const wc
 // @Para: int nSize				// 目标数组长度
 // @Return: BOOL(true:成功, false:失败)
 //------------------------------------------------------------------
-BOOL PLUMPATH_CALLMODE CPlumPath::PlumPathConvertW2A(const wchar_t* wszArr, const char* szArr, int nSize)
+BOOL PLUMPATH_CALLMETHOD CPlumPath::PlumPathConvertW2A(const wchar_t* wszArr, const char* szArr, int nSize)
 {
 	int nSrcSize = 0;
 	char* pszArr = NULL;
@@ -100,7 +101,7 @@ BOOL PLUMPATH_CALLMODE CPlumPath::PlumPathConvertW2A(const wchar_t* wszArr, cons
 // @Para: int nSize				//模块路径长度
 // @Return: BOOL(true:成功, false:失败)
 //------------------------------------------------------------------
-BOOL PLUMPATH_CALLMODE CPlumPath::PlumPathGetModulePathA(const char* szArr, int nSize)
+BOOL PLUMPATH_CALLMETHOD CPlumPath::PlumPathGetModulePathA(const char* szArr, int nSize)
 {
 	char chArr[MAX_PATH] = { 0 };
 	char* pTemp = NULL;
@@ -124,7 +125,7 @@ BOOL PLUMPATH_CALLMODE CPlumPath::PlumPathGetModulePathA(const char* szArr, int 
 // @Para: int nSize				//模块路径长度
 // @Return: BOOL(true:成功, false:失败)
 //------------------------------------------------------------------
-BOOL PLUMPATH_CALLMODE CPlumPath::PlumPathGetModulePathW(const wchar_t* wszArr, int nSize)
+BOOL PLUMPATH_CALLMETHOD CPlumPath::PlumPathGetModulePathW(const wchar_t* wszArr, int nSize)
 {
 	char chArr[MAX_PATH] = { 0 };
 	char* pTemp = NULL;
@@ -148,7 +149,7 @@ BOOL PLUMPATH_CALLMODE CPlumPath::PlumPathGetModulePathW(const wchar_t* wszArr, 
 // @Para: int nSize				//模块路径长度
 // @Return: BOOL(true:成功, false:失败)
 //------------------------------------------------------------------
-BOOL PLUMPATH_CALLMODE CPlumPath::PlumPathGetLocalPathA(const char* szArr, int nSize)
+BOOL PLUMPATH_CALLMETHOD CPlumPath::PlumPathGetLocalPathA(const char* szArr, int nSize)
 {
 	char chArr[MAX_PATH] = { 0 };
 	char* pTemp = NULL;
@@ -177,7 +178,7 @@ BOOL PLUMPATH_CALLMODE CPlumPath::PlumPathGetLocalPathA(const char* szArr, int n
 // @Para: int nSize				//模块路径长度
 // @Return: BOOL(true:成功, false:失败)
 //------------------------------------------------------------------
-BOOL PLUMPATH_CALLMODE CPlumPath::PlumPathGetLocalPathW(const wchar_t* wszArr, int nSize)
+BOOL PLUMPATH_CALLMETHOD CPlumPath::PlumPathGetLocalPathW(const wchar_t* wszArr, int nSize)
 {
 	char chArr[MAX_PATH] = { 0 };
 	char* pTemp = NULL;
@@ -204,7 +205,7 @@ BOOL PLUMPATH_CALLMODE CPlumPath::PlumPathGetLocalPathW(const wchar_t* wszArr, i
 // @Para: int nSize				//模块路径长度
 // @Return: BOOL(true:成功, false:失败)
 //------------------------------------------------------------------
-BOOL PLUMPATH_CALLMODE CPlumPath::PlumPathGetParentPathA(const char* szArr, int nSize, int nDeep)
+BOOL PLUMPATH_CALLMETHOD CPlumPath::PlumPathGetParentPathA(const char* szArr, int nSize, int nDeep)
 {
 	char chArr[MAX_PATH] = { 0 };
 	int nArrSize = 0;
@@ -240,7 +241,7 @@ BOOL PLUMPATH_CALLMODE CPlumPath::PlumPathGetParentPathA(const char* szArr, int 
 // @Para: int nSize				//模块路径长度
 // @Return: BOOL(true:成功, false:失败)
 //------------------------------------------------------------------
-BOOL PLUMPATH_CALLMODE CPlumPath::PlumPathGetParentPathW(const wchar_t* wszArr, int nSize, int nDeep)
+BOOL PLUMPATH_CALLMETHOD CPlumPath::PlumPathGetParentPathW(const wchar_t* wszArr, int nSize, int nDeep)
 {
 	char chArr[MAX_PATH] = { 0 };
 	if (nDeep <= 0)
