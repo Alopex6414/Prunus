@@ -57,6 +57,9 @@
     <ClInclude Include="PlumCat.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="PlumLogEx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PlumCipherA.cpp">
@@ -93,6 +96,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="PlumCat.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PlumLogEx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

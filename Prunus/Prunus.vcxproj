@@ -142,6 +142,7 @@
     <ClInclude Include="PlumGraphics.h" />
     <ClInclude Include="PlumIni.h" />
     <ClInclude Include="PlumLog.h" />
+    <ClInclude Include="PlumLogEx.h" />
     <ClInclude Include="PlumPack.h" />
     <ClInclude Include="PlumPath.h" />
     <ClInclude Include="PlumProcess.h" />
@@ -157,6 +158,7 @@
     <ClCompile Include="PlumGraphics.cpp" />
     <ClCompile Include="PlumIni.cpp" />
     <ClCompile Include="PlumLog.cpp" />
+    <ClCompile Include="PlumLogEx.cpp" />
     <ClCompile Include="PlumPack.cpp" />
     <ClCompile Include="PlumPath.cpp" />
     <ClCompile Include="PlumProcess.cpp" />
