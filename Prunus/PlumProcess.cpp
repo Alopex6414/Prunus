@@ -6,9 +6,10 @@
 * @file		PlumProcess.cpp
 * @brief	This Program is PlumProcess DLL Project.
 * @author	Alopex/Helium
-* @version	v1.01a
+* @version	v1.02a
 * @date		2018-1-30	v1.00a	alopex	Create Project.
 * @date		2018-7-13	v1.01a	alopex	Add Static Function.
+* @date		2018-10-23	v1.02a	alopex	Alter Call Method.
 */
 #include "PlumProcess.h"
 
@@ -47,7 +48,7 @@ CPlumProcess::~CPlumProcess()
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-DWORD PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessGetProcessID(void) const
+DWORD PLUMPROCESS_CALLMETHOD CPlumProcess::PlumProcessGetProcessID(void) const
 {
 	return m_dwProcessID;
 }
@@ -59,7 +60,7 @@ DWORD PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessGetProcessID(void) const
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-DWORD PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessGetThreadID(void) const
+DWORD PLUMPROCESS_CALLMETHOD CPlumProcess::PlumProcessGetThreadID(void) const
 {
 	return m_dwThreadID;
 }
@@ -71,7 +72,7 @@ DWORD PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessGetThreadID(void) const
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-HANDLE PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessGetProcessHandle(void) const
+HANDLE PLUMPROCESS_CALLMETHOD CPlumProcess::PlumProcessGetProcessHandle(void) const
 {
 	return m_hProcess;
 }
@@ -83,7 +84,7 @@ HANDLE PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessGetProcessHandle(void) cons
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-HANDLE PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessGetThreadHandle(void) const
+HANDLE PLUMPROCESS_CALLMETHOD CPlumProcess::PlumProcessGetThreadHandle(void) const
 {
 	return m_hThread;
 }
@@ -95,7 +96,7 @@ HANDLE PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessGetThreadHandle(void) const
 // @Para: DWORD dwProcessID		//进程ID
 // @Return: None
 //------------------------------------------------------------------
-void PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessSetProcessID(DWORD dwProcessID)
+void PLUMPROCESS_CALLMETHOD CPlumProcess::PlumProcessSetProcessID(DWORD dwProcessID)
 {
 	m_dwProcessID = dwProcessID;
 }
@@ -107,7 +108,7 @@ void PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessSetProcessID(DWORD dwProcessI
 // @Para: DWORD dwThreadID		//线程ID
 // @Return: None
 //------------------------------------------------------------------
-void PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessSetThreadID(DWORD dwThreadID)
+void PLUMPROCESS_CALLMETHOD CPlumProcess::PlumProcessSetThreadID(DWORD dwThreadID)
 {
 	m_dwThreadID = dwThreadID;
 }
@@ -119,7 +120,7 @@ void PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessSetThreadID(DWORD dwThreadID)
 // @Para: const char* strProcessName	//进程名称(ASCII)
 // @Return: None
 //------------------------------------------------------------------
-BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessStartProcessA(const char* strProcessName)
+BOOL PLUMPROCESS_CALLMETHOD CPlumProcess::PlumProcessStartProcessA(const char* strProcessName)
 {
 	BOOL bRet = FALSE;
 
@@ -163,7 +164,7 @@ BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessStartProcessA(const char* str
 // @Para: const wchar_t* strProcessName		//进程名称(Unicode)
 // @Return: None
 //------------------------------------------------------------------
-BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessStartProcessW(const wchar_t* strProcessName)
+BOOL PLUMPROCESS_CALLMETHOD CPlumProcess::PlumProcessStartProcessW(const wchar_t* strProcessName)
 {
 	BOOL bRet = FALSE;
 
@@ -219,7 +220,7 @@ BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessStartProcessW(const wchar_t* 
 // @Para: const char* strProcessName	//进程名称(ASCII)
 // @Return: None
 //--------------------------------------------------------------------------
-BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessStartProcessNoCloseA(const char* strProcessName)
+BOOL PLUMPROCESS_CALLMETHOD CPlumProcess::PlumProcessStartProcessNoCloseA(const char* strProcessName)
 {
 	BOOL bRet = FALSE;
 
@@ -265,7 +266,7 @@ BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessStartProcessNoCloseA(const ch
 // @Para: const wchar_t* strProcessName		//进程名称(Unicode)
 // @Return: None
 //-----------------------------------------------------------------------------
-BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessStartProcessNoCloseW(const wchar_t* strProcessName)
+BOOL PLUMPROCESS_CALLMETHOD CPlumProcess::PlumProcessStartProcessNoCloseW(const wchar_t* strProcessName)
 {
 	BOOL bRet = FALSE;
 
@@ -324,7 +325,7 @@ BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessStartProcessNoCloseW(const wc
 // @Para: const char* strProcessCmd		//命令行(ASCII)
 // @Return: None
 //-----------------------------------------------------------------------------------------------
-BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessStartProcessA(const char * strProcessName, const char * strProcessCmd)
+BOOL PLUMPROCESS_CALLMETHOD CPlumProcess::PlumProcessStartProcessA(const char * strProcessName, const char * strProcessCmd)
 {
 	BOOL bResult;
 
@@ -374,7 +375,7 @@ BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessStartProcessA(const char * st
 // @Para: const char* strProcessCmd		//命令行(ASCII)
 // @Return: None
 //-----------------------------------------------------------------------------------------------
-BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessStartProcessNoCloseA(const char * strProcessName, const char * strProcessCmd)
+BOOL PLUMPROCESS_CALLMETHOD CPlumProcess::PlumProcessStartProcessNoCloseA(const char * strProcessName, const char * strProcessCmd)
 {
 	BOOL bResult;
 
@@ -425,7 +426,7 @@ BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessStartProcessNoCloseA(const ch
 // @Para: const char* strProcessName	//进程名称(ASCII)
 // @Return: None
 //--------------------------------------------------------------------------
-BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessIsProcessExistA(const char * strProcessName)
+BOOL PLUMPROCESS_CALLMETHOD CPlumProcess::PlumProcessIsProcessExistA(const char * strProcessName)
 {
 	BOOL bRet = FALSE;
 	HANDLE hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
@@ -472,7 +473,7 @@ BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessIsProcessExistA(const char * 
 // @Para: const char* strProcessName	//进程名称(Unicode)
 // @Return: None
 //--------------------------------------------------------------------------
-BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessIsProcessExistW(const wchar_t * strProcessName)
+BOOL PLUMPROCESS_CALLMETHOD CPlumProcess::PlumProcessIsProcessExistW(const wchar_t * strProcessName)
 {
 	BOOL bRet = FALSE;
 	HANDLE hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
@@ -508,7 +509,7 @@ BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessIsProcessExistW(const wchar_t
 // @Para: const char* strProcessName	//进程名称(ASCII)
 // @Return: None
 //------------------------------------------------------------------
-BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessStartProcessExA(const char * strProcessName)
+BOOL PLUMPROCESS_CALLMETHOD CPlumProcess::PlumProcessStartProcessExA(const char * strProcessName)
 {
 	BOOL bRet = FALSE;
 
@@ -549,7 +550,7 @@ BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessStartProcessExA(const char * 
 // @Para: const wchar_t* strProcessName		//进程名称(Unicode)
 // @Return: None
 //------------------------------------------------------------------
-BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessStartProcessExW(const wchar_t * strProcessName)
+BOOL PLUMPROCESS_CALLMETHOD CPlumProcess::PlumProcessStartProcessExW(const wchar_t * strProcessName)
 {
 	BOOL bRet = FALSE;
 
@@ -602,7 +603,7 @@ BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessStartProcessExW(const wchar_t
 // @Para: const char* strProcessName	//进程名称(ASCII)
 // @Return: None
 //--------------------------------------------------------------------------
-BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessIsProcessExistExA(const char * strProcessName)
+BOOL PLUMPROCESS_CALLMETHOD CPlumProcess::PlumProcessIsProcessExistExA(const char * strProcessName)
 {
 	BOOL bRet = FALSE;
 	HANDLE hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
@@ -649,7 +650,7 @@ BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessIsProcessExistExA(const char 
 // @Para: const char* strProcessName	//进程名称(Unicode)
 // @Return: None
 //--------------------------------------------------------------------------
-BOOL PLUMPROCESS_CALLMODE CPlumProcess::PlumProcessIsProcessExistExW(const wchar_t * strProcessName)
+BOOL PLUMPROCESS_CALLMETHOD CPlumProcess::PlumProcessIsProcessExistExW(const wchar_t * strProcessName)
 {
 	BOOL bRet = FALSE;
 	HANDLE hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
