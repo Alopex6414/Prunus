@@ -6,9 +6,10 @@
 * @file		PlumThread.cpp
 * @brief	This Program is PlumThread DLL Project.
 * @author	Alopex/Helium
-* @version	v1.01a
+* @version	v1.02a
 * @date		2018-1-14	v1.00a	alopex	Create Project.
 * @date		2018-7-20	v1.01a	alopex	Modify Call Mode.
+* @date		2018-10-23	v1.02a	alopex	Alter Call Method.
 */
 #include "PlumThread.h"
 
@@ -78,7 +79,7 @@ CPlumThread::CPlumThread(CPlumThreadBase* pThreadBase)
 // @Para: bool bSuspend	//运行是否挂起
 // @Return: None
 //------------------------------------------------------------------
-bool PLUMTHREAD_CALLMODE CPlumThread::PlumThreadInit(bool bSuspend)
+bool PLUMTHREAD_CALLMETHOD CPlumThread::PlumThreadInit(bool bSuspend)
 {
 	//线程正在运行状态
 	if (m_bThreadRun) return true;
@@ -106,7 +107,7 @@ bool PLUMTHREAD_CALLMODE CPlumThread::PlumThreadInit(bool bSuspend)
 // @Para: int nPriority		//线程优先级
 // @Return: None
 //------------------------------------------------------------------
-void PLUMTHREAD_CALLMODE CPlumThread::PlumThreadSetPriority(int nPriority)
+void PLUMTHREAD_CALLMETHOD CPlumThread::PlumThreadSetPriority(int nPriority)
 {
 	SetThreadPriority(m_hThread, nPriority);	//线程优先级
 }
@@ -118,7 +119,7 @@ void PLUMTHREAD_CALLMODE CPlumThread::PlumThreadSetPriority(int nPriority)
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-void PLUMTHREAD_CALLMODE CPlumThread::PlumThreadRun()
+void PLUMTHREAD_CALLMETHOD CPlumThread::PlumThreadRun()
 {
 	//线程未运行
 	if (!m_bThreadRun) return;
@@ -139,7 +140,7 @@ void PLUMTHREAD_CALLMODE CPlumThread::PlumThreadRun()
 // @Para: int nTimeOut	//等待时间
 // @Return: None
 //------------------------------------------------------------------
-void PLUMTHREAD_CALLMODE CPlumThread::PlumThreadJoin(int nTimeOut)
+void PLUMTHREAD_CALLMETHOD CPlumThread::PlumThreadJoin(int nTimeOut)
 {
 	//线程未创建成功或线程未运行
 	if (m_hThread == NULL || !m_bThreadRun)
@@ -163,7 +164,7 @@ void PLUMTHREAD_CALLMODE CPlumThread::PlumThreadJoin(int nTimeOut)
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-void PLUMTHREAD_CALLMODE CPlumThread::PlumThreadResume()
+void PLUMTHREAD_CALLMETHOD CPlumThread::PlumThreadResume()
 {
 	//线程未创建成功或线程未运行
 	if (m_hThread == NULL || !m_bThreadRun)
@@ -181,7 +182,7 @@ void PLUMTHREAD_CALLMODE CPlumThread::PlumThreadResume()
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-void PLUMTHREAD_CALLMODE CPlumThread::PlumThreadSuspend()
+void PLUMTHREAD_CALLMETHOD CPlumThread::PlumThreadSuspend()
 {
 	//线程未创建成功或线程未运行
 	if (m_hThread == NULL || !m_bThreadRun)
@@ -199,7 +200,7 @@ void PLUMTHREAD_CALLMODE CPlumThread::PlumThreadSuspend()
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-bool PLUMTHREAD_CALLMODE CPlumThread::PlumThreadTerminate(DWORD dwExitCode)
+bool PLUMTHREAD_CALLMETHOD CPlumThread::PlumThreadTerminate(DWORD dwExitCode)
 {
 	//线程未创建成功或线程未运行
 	if (m_hThread == NULL || !m_bThreadRun)
@@ -223,7 +224,7 @@ bool PLUMTHREAD_CALLMODE CPlumThread::PlumThreadTerminate(DWORD dwExitCode)
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-void PLUMTHREAD_CALLMODE CPlumThread::PlumThreadExit()
+void PLUMTHREAD_CALLMETHOD CPlumThread::PlumThreadExit()
 {
 	if (m_hThread == NULL)
 	{
@@ -240,7 +241,7 @@ void PLUMTHREAD_CALLMODE CPlumThread::PlumThreadExit()
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-DWORD PLUMTHREAD_CALLMODE CPlumThread::PlumThreadGetID() const
+DWORD PLUMTHREAD_CALLMETHOD CPlumThread::PlumThreadGetID() const
 {
 	return m_dwThreadID;
 }
@@ -252,7 +253,7 @@ DWORD PLUMTHREAD_CALLMODE CPlumThread::PlumThreadGetID() const
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-DWORD PLUMTHREAD_CALLMODE CPlumThread::PlumThreadProc(LPVOID pThreadPara)
+DWORD PLUMTHREAD_CALLMETHOD CPlumThread::PlumThreadProc(LPVOID pThreadPara)
 {
 	CPlumThread* pThread = (CPlumThread*)(pThreadPara);
 
