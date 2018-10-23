@@ -6,9 +6,10 @@
 * @file		PlumIni.cpp
 * @brief	This Program is PlumIni DLL Project.
 * @author	Alopex/Helium
-* @version	v1.02a
+* @version	v1.03a
 * @date		2018-01-17	v1.00a	alopex	Create Project.
 * @date		2018-07-30	v1.02a	alopex	Add Call Mode.
+* @date		2018-10-23	v1.03a	alopex	Alter Call Method.
 */
 #include "PlumIni.h"
 
@@ -47,7 +48,7 @@ CPlumIni::~CPlumIni()
 // @Para: char** ppStrValue		//字符串返回值(需要释放!)(初始化传入NULL)
 // @Return: bool				//布尔型 true:成功 false:失败
 //-----------------------------------------------------------------------------------------------------------------------------------
-bool PLUMINI_CALLMODE CPlumIni::PlumIniReadStringKeyValue(char* pStrFileName, char* pStrSection, char* pStrKey, char* pStrDefault, char** ppStrValue)
+bool PLUMINI_CALLMETHOD CPlumIni::PlumIniReadStringKeyValue(char* pStrFileName, char* pStrSection, char* pStrKey, char* pStrDefault, char** ppStrValue)
 {
 	bool bResult = false;
 	char strData[MAX_PATH];
@@ -88,7 +89,7 @@ bool PLUMINI_CALLMODE CPlumIni::PlumIniReadStringKeyValue(char* pStrFileName, ch
 // @Para: int* pValue			//整型返回值
 // @Return: bool				//布尔型 true:成功 false:失败
 //----------------------------------------------------------------------------------------------------------------------
-bool PLUMINI_CALLMODE CPlumIni::PlumIniReadIntKeyValue(char* pStrFileName, char* pStrSection, char* pStrKey, int nDefault, int* pValue)
+bool PLUMINI_CALLMETHOD CPlumIni::PlumIniReadIntKeyValue(char* pStrFileName, char* pStrSection, char* pStrKey, int nDefault, int* pValue)
 {
 	bool bResult = false;
 	char** ppArray = NULL;
@@ -126,7 +127,7 @@ bool PLUMINI_CALLMODE CPlumIni::PlumIniReadIntKeyValue(char* pStrFileName, char*
 // @Para: char* pStrValue		//写入字符串(外部管理内存)
 // @Return: bool				//布尔型 true:成功 false:失败
 //-----------------------------------------------------------------------------------------------------------------------------------
-bool PLUMINI_CALLMODE CPlumIni::PlumIniWriteStringKeyValue(char* pStrFileName, char* pStrSection, char* pStrKey, char* pStrValue)
+bool PLUMINI_CALLMETHOD CPlumIni::PlumIniWriteStringKeyValue(char* pStrFileName, char* pStrSection, char* pStrKey, char* pStrValue)
 {
 	bool bResult = false;
 	DWORD dwCount = 0;
@@ -154,7 +155,7 @@ bool PLUMINI_CALLMODE CPlumIni::PlumIniWriteStringKeyValue(char* pStrFileName, c
 // @Para: int nValue			//写入整型数值
 // @Return: bool				//布尔型 true:成功 false:失败
 //-----------------------------------------------------------------------------------------------------------------------------------
-bool PLUMINI_CALLMODE CPlumIni::PlumIniWriteIntKeyValue(char* pStrFileName, char* pStrSection, char* pStrKey, int nValue)
+bool PLUMINI_CALLMETHOD CPlumIni::PlumIniWriteIntKeyValue(char* pStrFileName, char* pStrSection, char* pStrKey, int nValue)
 {
 	bool bResult = false;
 	char strValue[32];
