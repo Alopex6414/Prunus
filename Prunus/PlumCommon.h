@@ -41,6 +41,9 @@
 
 //Include STL Header File
 #include <iostream>
+#include <fstream>
+#include <ctime>
+#include <string>
 #include <vector>
 #include <array>
 #include <queue>
