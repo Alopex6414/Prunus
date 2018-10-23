@@ -6,9 +6,10 @@
 * @file		PlumFile.cpp
 * @brief	This Program is PlumFile DLL Project.
 * @author	Alopex/Helium
-* @version	v1.02a
+* @version	v1.03a
 * @date		2017-12-25	v1.00a	alopex	Create Project.
 * @date		2018-07-12	v1.02a	alopex	Add Call Mode.
+* @date		2018-10-23	v1.03a	alopex	Alter Call Method.
 */
 #include "PlumFile.h"
 
@@ -44,7 +45,7 @@ CPlumFile::~CPlumFile()
 // @Para: DWORD dwSize			//数组长度
 // @Return: None
 //------------------------------------------------------------------
-void PLUMFILE_CALLMODE CPlumFile::PlumFileGetCurrentDirectoryA(char* pArr, DWORD dwSize)
+void PLUMFILE_CALLMETHOD CPlumFile::PlumFileGetCurrentDirectoryA(char* pArr, DWORD dwSize)
 {
 	GetCurrentDirectoryA(dwSize, pArr);
 }
@@ -57,7 +58,7 @@ void PLUMFILE_CALLMODE CPlumFile::PlumFileGetCurrentDirectoryA(char* pArr, DWORD
 // @Para: DWORD dwSize			//数组长度
 // @Return: None
 //------------------------------------------------------------------
-void PLUMFILE_CALLMODE CPlumFile::PlumFileGetCurrentDirectoryW(wchar_t* pArr, DWORD dwSize)
+void PLUMFILE_CALLMETHOD CPlumFile::PlumFileGetCurrentDirectoryW(wchar_t* pArr, DWORD dwSize)
 {
 	GetCurrentDirectoryW(dwSize, pArr);
 }
@@ -70,7 +71,7 @@ void PLUMFILE_CALLMODE CPlumFile::PlumFileGetCurrentDirectoryW(wchar_t* pArr, DW
 // @Para: DWORD dwSize			//数组长度
 // @Return: None
 //------------------------------------------------------------------
-void PLUMFILE_CALLMODE CPlumFile::PlumFileGetModuleFileNameA(char* pArr, DWORD dwSize)
+void PLUMFILE_CALLMETHOD CPlumFile::PlumFileGetModuleFileNameA(char* pArr, DWORD dwSize)
 {
 	GetModuleFileNameA(NULL, pArr, dwSize);
 }
@@ -83,7 +84,7 @@ void PLUMFILE_CALLMODE CPlumFile::PlumFileGetModuleFileNameA(char* pArr, DWORD d
 // @Para: DWORD dwSize			//数组长度
 // @Return: None
 //------------------------------------------------------------------
-void PLUMFILE_CALLMODE CPlumFile::PlumFileGetModuleFileNameW(wchar_t* pArr, DWORD dwSize)
+void PLUMFILE_CALLMETHOD CPlumFile::PlumFileGetModuleFileNameW(wchar_t* pArr, DWORD dwSize)
 {
 	GetModuleFileNameW(NULL, pArr, dwSize);
 }
@@ -95,7 +96,7 @@ void PLUMFILE_CALLMODE CPlumFile::PlumFileGetModuleFileNameW(wchar_t* pArr, DWOR
 // @Para: const char* pSrc			//文件夹路径
 // @Return: None
 //------------------------------------------------------------------
-void PLUMFILE_CALLMODE CPlumFile::PlumFileCreateDirectoryA(const char* pSrc)
+void PLUMFILE_CALLMETHOD CPlumFile::PlumFileCreateDirectoryA(const char* pSrc)
 {
 	CreateDirectoryA(pSrc, NULL);
 }
@@ -107,7 +108,7 @@ void PLUMFILE_CALLMODE CPlumFile::PlumFileCreateDirectoryA(const char* pSrc)
 // @Para: const wchar_t* pSrc		//文件夹路径
 // @Return: None
 //------------------------------------------------------------------
-void PLUMFILE_CALLMODE CPlumFile::PlumFileCreateDirectoryW(const wchar_t* pSrc)
+void PLUMFILE_CALLMETHOD CPlumFile::PlumFileCreateDirectoryW(const wchar_t* pSrc)
 {
 	CreateDirectoryW(pSrc, NULL);
 }
@@ -119,7 +120,7 @@ void PLUMFILE_CALLMODE CPlumFile::PlumFileCreateDirectoryW(const wchar_t* pSrc)
 // @Para: const char* pSrc			//文件夹路径
 // @Return: None
 //------------------------------------------------------------------
-void PLUMFILE_CALLMODE CPlumFile::PlumFileCopyFileA(const char* pSrc, const char* pDest, BOOL bNoCover)
+void PLUMFILE_CALLMETHOD CPlumFile::PlumFileCopyFileA(const char* pSrc, const char* pDest, BOOL bNoCover)
 {
 	CopyFileA(pSrc, pDest, bNoCover);
 }
@@ -131,7 +132,7 @@ void PLUMFILE_CALLMODE CPlumFile::PlumFileCopyFileA(const char* pSrc, const char
 // @Para: const char* pSrc			//文件夹路径
 // @Return: None
 //------------------------------------------------------------------
-void PLUMFILE_CALLMODE CPlumFile::PlumFileCopyFileW(const wchar_t* pSrc, const wchar_t* pDest, BOOL bNoCover)
+void PLUMFILE_CALLMETHOD CPlumFile::PlumFileCopyFileW(const wchar_t* pSrc, const wchar_t* pDest, BOOL bNoCover)
 {
 	CopyFileW(pSrc, pDest, bNoCover);
 }
@@ -143,7 +144,7 @@ void PLUMFILE_CALLMODE CPlumFile::PlumFileCopyFileW(const wchar_t* pSrc, const w
 // @Para: const char* pSrc			//文件夹路径
 // @Return: None
 //------------------------------------------------------------------
-void PLUMFILE_CALLMODE CPlumFile::PlumFileDeleteFileA(const char* pSrc)
+void PLUMFILE_CALLMETHOD CPlumFile::PlumFileDeleteFileA(const char* pSrc)
 {
 	DeleteFileA(pSrc);
 }
@@ -155,7 +156,7 @@ void PLUMFILE_CALLMODE CPlumFile::PlumFileDeleteFileA(const char* pSrc)
 // @Para: const char* pSrc			//文件夹路径
 // @Return: None
 //------------------------------------------------------------------
-void PLUMFILE_CALLMODE CPlumFile::PlumFileDeleteFileW(const wchar_t* pSrc)
+void PLUMFILE_CALLMETHOD CPlumFile::PlumFileDeleteFileW(const wchar_t* pSrc)
 {
 	DeleteFileW(pSrc);
 }
@@ -169,7 +170,7 @@ void PLUMFILE_CALLMODE CPlumFile::PlumFileDeleteFileW(const wchar_t* pSrc)
 // @Para: DWORD* pSize				//内存数组长度指针(文件长度)
 // @Return: bool(true: 函数执行成功 false: 函数执行失败)
 //--------------------------------------------------------------------------------------------------
-bool PLUMFILE_CALLMODE CPlumFile::PlumFileReadFileSaveInMemory(const char* pSrc, char** ppDest, DWORD* pSize)
+bool PLUMFILE_CALLMETHOD CPlumFile::PlumFileReadFileSaveInMemory(const char* pSrc, char** ppDest, DWORD* pSize)
 {
 	HANDLE hFileSrc;
 
@@ -216,7 +217,7 @@ bool PLUMFILE_CALLMODE CPlumFile::PlumFileReadFileSaveInMemory(const char* pSrc,
 // @Para: DWORD* pSize				//内存数组长度指针(文件长度)
 // @Return: bool(true: 函数执行成功 false: 函数执行失败)
 //--------------------------------------------------------------------------------------------------
-bool PLUMFILE_CALLMODE CPlumFile::PlumFileReadFileSaveInMemory(const wchar_t* pSrc, char** ppDest, DWORD* pSize)
+bool PLUMFILE_CALLMETHOD CPlumFile::PlumFileReadFileSaveInMemory(const wchar_t* pSrc, char** ppDest, DWORD* pSize)
 {
 	HANDLE hFileSrc;
 
@@ -264,7 +265,7 @@ bool PLUMFILE_CALLMODE CPlumFile::PlumFileReadFileSaveInMemory(const wchar_t* pS
 // @Para: const char* pDest			//写入文件路径(Unicode)
 // @Return: bool(true: 函数执行成功 false: 函数执行失败)
 //-----------------------------------------------------------------------------------------------------
-bool PLUMFILE_CALLMODE CPlumFile::PlumFileWriteMemorySaveInFile(const char* pSrc, DWORD dwSize, const char* pDest)
+bool PLUMFILE_CALLMETHOD CPlumFile::PlumFileWriteMemorySaveInFile(const char* pSrc, DWORD dwSize, const char* pDest)
 {
 	HANDLE hFileDest;
 
@@ -300,7 +301,7 @@ bool PLUMFILE_CALLMODE CPlumFile::PlumFileWriteMemorySaveInFile(const char* pSrc
 // @Para: const wchar_t* pDest		//写入文件路径(多字节)
 // @Return: bool(true: 函数执行成功 false: 函数执行失败)
 //-----------------------------------------------------------------------------------------------------
-bool PLUMFILE_CALLMODE CPlumFile::PlumFileWriteMemorySaveInFile(const char* pSrc, DWORD dwSize, const wchar_t* pDest)
+bool PLUMFILE_CALLMETHOD CPlumFile::PlumFileWriteMemorySaveInFile(const char* pSrc, DWORD dwSize, const wchar_t* pDest)
 {
 	HANDLE hFileDest;
 
