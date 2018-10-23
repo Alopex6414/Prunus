@@ -6,11 +6,12 @@
 * @file		PlumLog.h
 * @brief	This Program is PlumLog DLL Project.
 * @author	Alopex/Helium
-* @version	v1.03a
+* @version	v1.04a
 * @date		2018-1-26	v1.00a	alopex	Create Project.
 * @date		2018-3-20	v1.01a	alopex	Modify Code Bug.
 * @date		2018-3-24	v1.02a	alopex	Add Auto Create File Path.
 * @date		2018-7-03	v1.03a	alopex	Add Call Mode.
+* @date		2018-10-23	v1.04a	alopex	Alter Call Method.
 */
 #pragma once
 
@@ -27,7 +28,7 @@
 #define PLUMLOG_API	__declspec(dllimport)
 #endif
 
-#define PLUMLOG_CALLMODE	__stdcall
+#define PLUMLOG_CALLMETHOD	__stdcall
 
 //Class Definition
 class PLUMLOG_API CPlumLog
@@ -47,37 +48,37 @@ public:
 	CPlumLog(bool bIsUseLog);				//Construction Function(~构造函数)
 
 	//访问
-	virtual bool PLUMLOG_CALLMODE PlumLogGetUse() const;		//PlumLog Get UseLog(~获取使用日志)
+	virtual bool PLUMLOG_CALLMETHOD PlumLogGetUse() const;		//PlumLog Get UseLog(~获取使用日志)
 
 	//控制
-	virtual void PLUMLOG_CALLMODE PlumLogSetUse(bool IsUseLog);	//PlumLog Set UseLog(~设置使用日志)
+	virtual void PLUMLOG_CALLMETHOD PlumLogSetUse(bool IsUseLog);	//PlumLog Set UseLog(~设置使用日志)
 
 	//初始化
-	virtual void PLUMLOG_CALLMODE PlumLogInit();				//PlumLog Initialize(~初始化)(通用初始化<可重载>)
+	virtual void PLUMLOG_CALLMETHOD PlumLogInit();				//PlumLog Initialize(~初始化)(通用初始化<可重载>)
 
 	//退出
-	virtual void PLUMLOG_CALLMODE PlumLogExit();				//PlumLog Exit(~退出)
-	virtual void PLUMLOG_CALLMODE PlumLogClose();				//PlumLog Close(~关闭文件系统)<需要调用Exit或Close>
+	virtual void PLUMLOG_CALLMETHOD PlumLogExit();				//PlumLog Exit(~退出)
+	virtual void PLUMLOG_CALLMETHOD PlumLogClose();				//PlumLog Close(~关闭文件系统)<需要调用Exit或Close>
 
 	//写入
-	virtual void PLUMLOG_CALLMODE PlumLogWrite(LPCSTR lpcstr);					//Plum Write(~写入)(ASCII)
-	virtual void PLUMLOG_CALLMODE PlumLogWriteElongate(LPCSTR lpcstr, ...);		//Plum Write(~写入)(变参数长度)
-	virtual void PLUMLOG_CALLMODE PlumLogWriteNormal(LPCSTR lpcstr, ...);		//Plum Write(~写入)(标准格式)<时间/线程>
-	virtual void PLUMLOG_CALLMODE PlumLogWriteExtend(LPCSTR lpcstr, ...);		//Plum Write(~写入)(扩展格式)<时间/线程/文件/行号>
-	virtual void PLUMLOG_CALLMODE PlumLogWriteLine(LPCSTR lpcstr);				//Plum Write Line(~写入)(ASCII)
-	virtual void PLUMLOG_CALLMODE PlumLogWriteLineElongate(LPCSTR lpcstr, ...);	//Plum Write Line(~写入)(变参数长度)
-	virtual void PLUMLOG_CALLMODE PlumLogWriteLineNormal(LPCSTR lpcstr, ...);	//Plum Write Line(~写入)(标准格式)<时间/线程>
-	virtual void PLUMLOG_CALLMODE PlumLogWriteLineExtend(LPCSTR lpcstr, ...);	//Plum Write Line(~写入)(扩展格式)<时间/线程/文件/行号>
+	virtual void PLUMLOG_CALLMETHOD PlumLogWrite(LPCSTR lpcstr);					//Plum Write(~写入)(ASCII)
+	virtual void PLUMLOG_CALLMETHOD PlumLogWriteElongate(LPCSTR lpcstr, ...);		//Plum Write(~写入)(变参数长度)
+	virtual void PLUMLOG_CALLMETHOD PlumLogWriteNormal(LPCSTR lpcstr, ...);		//Plum Write(~写入)(标准格式)<时间/线程>
+	virtual void PLUMLOG_CALLMETHOD PlumLogWriteExtend(LPCSTR lpcstr, ...);		//Plum Write(~写入)(扩展格式)<时间/线程/文件/行号>
+	virtual void PLUMLOG_CALLMETHOD PlumLogWriteLine(LPCSTR lpcstr);				//Plum Write Line(~写入)(ASCII)
+	virtual void PLUMLOG_CALLMETHOD PlumLogWriteLineElongate(LPCSTR lpcstr, ...);	//Plum Write Line(~写入)(变参数长度)
+	virtual void PLUMLOG_CALLMETHOD PlumLogWriteLineNormal(LPCSTR lpcstr, ...);	//Plum Write Line(~写入)(标准格式)<时间/线程>
+	virtual void PLUMLOG_CALLMETHOD PlumLogWriteLineExtend(LPCSTR lpcstr, ...);	//Plum Write Line(~写入)(扩展格式)<时间/线程/文件/行号>
 
-	virtual void PLUMLOG_CALLMODE PlumLogWriteExtend(LPCSTR file, LONG line, LPCSTR lpcstr, ...);		//Plum Write(~写入)(扩展格式)<时间/线程/文件/行号>(传入__FILE__,__LINE__)
-	virtual void PLUMLOG_CALLMODE PlumLogWriteLineExtend(LPCSTR file, LONG line, LPCSTR lpcstr, ...);	//Plum Write Line(~写入)(扩展格式)<时间/线程/文件/行号>(传入__FILE__,__LINE__)
+	virtual void PLUMLOG_CALLMETHOD PlumLogWriteExtend(LPCSTR file, LONG line, LPCSTR lpcstr, ...);		//Plum Write(~写入)(扩展格式)<时间/线程/文件/行号>(传入__FILE__,__LINE__)
+	virtual void PLUMLOG_CALLMETHOD PlumLogWriteLineExtend(LPCSTR file, LONG line, LPCSTR lpcstr, ...);	//Plum Write Line(~写入)(扩展格式)<时间/线程/文件/行号>(传入__FILE__,__LINE__)
 
 protected:
-	virtual void PLUMLOG_CALLMODE WriteLineComputerName();	//PlumLog Write Line Computer Name(~写入计算机名称)
-	virtual void PLUMLOG_CALLMODE WriteLineUserName();		//PlumLog Write Line User Name(~写入用户名称)
-	virtual void PLUMLOG_CALLMODE WriteLineWindowsVision();	//PlumLog Write Line Windows Vision(~写入Windows版本)
-	virtual void PLUMLOG_CALLMODE WriteLineProcessID();		//PlumLog Write Line Process ID(~写入进程ID)
-	virtual void PLUMLOG_CALLMODE WriteLineCurrentTime();	//PlumLog Write Line Current Time(~写入当前时间)
+	virtual void PLUMLOG_CALLMETHOD WriteLineComputerName();	//PlumLog Write Line Computer Name(~写入计算机名称)
+	virtual void PLUMLOG_CALLMETHOD WriteLineUserName();		//PlumLog Write Line User Name(~写入用户名称)
+	virtual void PLUMLOG_CALLMETHOD WriteLineWindowsVision();	//PlumLog Write Line Windows Vision(~写入Windows版本)
+	virtual void PLUMLOG_CALLMETHOD WriteLineProcessID();		//PlumLog Write Line Process ID(~写入进程ID)
+	virtual void PLUMLOG_CALLMETHOD WriteLineCurrentTime();	//PlumLog Write Line Current Time(~写入当前时间)
 
 };
 
