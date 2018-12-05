@@ -6,9 +6,10 @@
 * @file		PlumLogEx.cpp
 * @brief	This Program is PlumLogEx DLL Project.
 * @author	Alopex/Helium
-* @version	v1.01a
+* @version	v1.02a
 * @date		2018-10-22	v1.00a	alopex	Create Project.
 * @date		2018-10-23	v1.01a	alopex	Alter Call Method.
+* @date		2018-12-05	v1.02a	alopex	Alter Bugs File Name & Print Line.
 */
 #include "PlumLogEx.h"
 
@@ -48,7 +49,7 @@ CPlumLogEx::~CPlumLogEx()
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-void PLUMLOGEX_CALLMETHOD CPlumLogEx::PlumLogExWrite(LPCSTR lpcstr, ...)
+void PLUMLOGEX_CALLMETHOD CPlumLogEx::PlumLogExWrite(LPCSTR file, LONG line, LPCSTR lpcstr, ...)
 {
 	SYSTEMTIME syCurrentTime = { 0 };
 	DWORD dwProcessID = 0;
@@ -58,7 +59,7 @@ void PLUMLOGEX_CALLMETHOD CPlumLogEx::PlumLogExWrite(LPCSTR lpcstr, ...)
 	dwProcessID = ::GetCurrentProcessId();
 	dwThreadID = ::GetCurrentThreadId();
 
-	char* pflie = const_cast<char*>(__FILE__);
+	char* pflie = const_cast<char*>(file);
 	char* pTemp = NULL;
 
 	if (strrchr((char*)pflie, '\\') != NULL)
@@ -85,7 +86,7 @@ void PLUMLOGEX_CALLMETHOD CPlumLogEx::PlumLogExWrite(LPCSTR lpcstr, ...)
 	fout.seekp(ios::end);
 
 	memset(chWriteArr, 0, sizeof(chWriteArr));
-	_snprintf_s(chWriteArr, sizeof(chWriteArr), "[%d-%02d-%02d %02d:%02d:%02d.%03d][%d][%d]<%s Line:%d>:", syCurrentTime.wYear, syCurrentTime.wMonth, syCurrentTime.wDay, syCurrentTime.wHour, syCurrentTime.wMinute, syCurrentTime.wSecond, syCurrentTime.wMilliseconds, dwProcessID, dwThreadID, pTemp, __LINE__);
+	_snprintf_s(chWriteArr, sizeof(chWriteArr), "[%d-%02d-%02d %02d:%02d:%02d.%03d][%d][%d]<%s Line:%d>:", syCurrentTime.wYear, syCurrentTime.wMonth, syCurrentTime.wDay, syCurrentTime.wHour, syCurrentTime.wMinute, syCurrentTime.wSecond, syCurrentTime.wMilliseconds, dwProcessID, dwThreadID, pTemp, line);
 	fout << chWriteArr;
 
 	va_list arg_ptr;
@@ -106,7 +107,7 @@ void PLUMLOGEX_CALLMETHOD CPlumLogEx::PlumLogExWrite(LPCSTR lpcstr, ...)
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-void PLUMLOGEX_CALLMETHOD CPlumLogEx::PlumLogExWriteLine(LPCSTR lpcstr, ...)
+void PLUMLOGEX_CALLMETHOD CPlumLogEx::PlumLogExWriteLine(LPCSTR file, LONG line, LPCSTR lpcstr, ...)
 {
 	SYSTEMTIME syCurrentTime = { 0 };
 	DWORD dwProcessID = 0;
@@ -116,7 +117,7 @@ void PLUMLOGEX_CALLMETHOD CPlumLogEx::PlumLogExWriteLine(LPCSTR lpcstr, ...)
 	dwProcessID = ::GetCurrentProcessId();
 	dwThreadID = ::GetCurrentThreadId();
 
-	char* pflie = const_cast<char*>(__FILE__);
+	char* pflie = const_cast<char*>(file);
 	char* pTemp = NULL;
 
 	if (strrchr((char*)pflie, '\\') != NULL)
@@ -143,7 +144,7 @@ void PLUMLOGEX_CALLMETHOD CPlumLogEx::PlumLogExWriteLine(LPCSTR lpcstr, ...)
 	fout.seekp(ios::end);
 
 	memset(chWriteArr, 0, sizeof(chWriteArr));
-	_snprintf_s(chWriteArr, sizeof(chWriteArr), "[%d-%02d-%02d %02d:%02d:%02d.%03d][%d][%d]<%s Line:%d>:", syCurrentTime.wYear, syCurrentTime.wMonth, syCurrentTime.wDay, syCurrentTime.wHour, syCurrentTime.wMinute, syCurrentTime.wSecond, syCurrentTime.wMilliseconds, dwProcessID, dwThreadID, pTemp, __LINE__);
+	_snprintf_s(chWriteArr, sizeof(chWriteArr), "[%d-%02d-%02d %02d:%02d:%02d.%03d][%d][%d]<%s Line:%d>:", syCurrentTime.wYear, syCurrentTime.wMonth, syCurrentTime.wDay, syCurrentTime.wHour, syCurrentTime.wMinute, syCurrentTime.wSecond, syCurrentTime.wMilliseconds, dwProcessID, dwThreadID, pTemp, line);
 	fout << chWriteArr;
 
 	va_list arg_ptr;

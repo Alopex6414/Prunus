@@ -6,9 +6,10 @@
 * @file		PlumLogEx.h
 * @brief	This Program is PlumLogEx DLL Project.
 * @author	Alopex/Helium
-* @version	v1.01a
+* @version	v1.02a
 * @date		2018-10-22	v1.00a	alopex	Create Project.
 * @date		2018-10-23	v1.01a	alopex	Alter Call Method.
+* @date		2018-12-05	v1.02a	alopex	Alter Bugs File Name & Print Line.
 */
 #pragma once
 
@@ -27,7 +28,7 @@
 
 #define PLUMLOGEX_CALLMETHOD	__stdcall
 
-#define PLUMLOGEX(Str)	CPlumLogEx::PlumLogExWriteLine(Str)
+#define PLUMLOGEX(file, line, Str)	CPlumLogEx::PlumLogExWriteLine(file, line, Str)
 
 //Class Definition
 class PLUMLOGEX_API CPlumLogEx
@@ -37,17 +38,17 @@ public:
 	~CPlumLogEx();			// CPlumLogEx (~析构函数)
 
 public:
-	static void PLUMLOGEX_CALLMETHOD PlumLogExWrite(LPCSTR lpcstr, ...);			// CPlumLogEx (~写入日志内容)
-	static void PLUMLOGEX_CALLMETHOD PlumLogExWriteLine(LPCSTR lpcstr, ...);		// CPlumLogEx (~写入日志内容)(换行)
+	static void PLUMLOGEX_CALLMETHOD PlumLogExWrite(LPCSTR file, LONG line, LPCSTR lpcstr, ...);			// CPlumLogEx (~写入日志内容)
+	static void PLUMLOGEX_CALLMETHOD PlumLogExWriteLine(LPCSTR file, LONG line, LPCSTR lpcstr, ...);		// CPlumLogEx (~写入日志内容)(换行)
 
 public:
-	static void PLUMLOGEX_CALLMETHOD PlumLogExCreateLogFilePath();					// CPlumLogEx (~创建日志文件路径)
-	static void PLUMLOGEX_CALLMETHOD PlumLogExGetLogFilePath(char* pStr, int nSize);// CPlumLogEx (~获取日志文件路径)
+	static void PLUMLOGEX_CALLMETHOD PlumLogExCreateLogFilePath();											// CPlumLogEx (~创建日志文件路径)
+	static void PLUMLOGEX_CALLMETHOD PlumLogExGetLogFilePath(char* pStr, int nSize);						// CPlumLogEx (~获取日志文件路径)
 
 protected:
-	static void PLUMLOGEX_CALLMETHOD PlumLogExGetComputerName();			// CPlumLogEx (~获取计算机名称)
-	static void PLUMLOGEX_CALLMETHOD PlumLogExGetUserName();				// CPlumLogEx (~获取用户名称)
-	static void PLUMLOGEX_CALLMETHOD PlumLogExGetWindowsVersion();			// CPlumLogEx (~获取Windows版本)
+	static void PLUMLOGEX_CALLMETHOD PlumLogExGetComputerName();											// CPlumLogEx (~获取计算机名称)
+	static void PLUMLOGEX_CALLMETHOD PlumLogExGetUserName();												// CPlumLogEx (~获取用户名称)
+	static void PLUMLOGEX_CALLMETHOD PlumLogExGetWindowsVersion();											// CPlumLogEx (~获取Windows版本)
 
 };
 
