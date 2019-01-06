@@ -840,6 +840,91 @@ void PLUMPACK_CALLMETHOD CPlumPack::PlumUnPackFileStoreInMemoryA(const char * pS
 	CloseHandle(hFileSrc);
 }
 
+//----------------------------------------------------------------------------------
+// @Function:	 PlumUnPackOneFileStoreInMemoryA(const char* pSrc)
+// @Purpose: CPlumPack解包函数
+// @Since: v1.00a
+// @Para: const char * pSrc			//解包文件名称
+// @Para: const void * pArray		//解包数组地址
+// @Para: int nSize					//解包数组长度
+// @Return: None
+//----------------------------------------------------------------------------------
+void PLUMPACK_CALLMETHOD CPlumPack::PlumUnPackOneFileStoreInMemoryA(const char * pSrc, const char * pFileName, const void * pValArr, DWORD dwValSize)
+{
+	HANDLE hFileSrc;
+
+	//打开源文件
+	hFileSrc = CreateFileA(pSrc, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+
+	if (hFileSrc == INVALID_HANDLE_VALUE)
+	{
+		CloseHandle(hFileSrc);
+		return;
+	}
+
+	//分析封包信息
+	PlumPackInfo sPackMsg;
+	int	nFileAllNum;
+	DWORD dwRealReadPackMsg;
+
+	ReadFile(hFileSrc, &sPackMsg, sizeof(sPackMsg), &dwRealReadPackMsg, NULL);
+	if (dwRealReadPackMsg == 0) return;
+
+	nFileAllNum = sPackMsg.dwFileAllNum;//封包文件总数
+	if (nFileAllNum == 0) return;
+
+	//存储各个文件偏移地址
+	DWORD* pFileAddress = NULL;
+	DWORD dwFileReadSize = 0;
+
+	pFileAddress = new DWORD[nFileAllNum];
+	for (int i = 0; i < nFileAllNum; ++i)
+	{
+		ReadFile(hFileSrc, (pFileAddress + i), sizeof(DWORD), &dwRealReadPackMsg, NULL);
+	}
+
+	//循环读取
+	for (int i = 0; i < nFileAllNum; ++i)
+	{
+		//设置解包文件地址
+		SetFilePointer(hFileSrc, *(pFileAddress + i), NULL, FILE_BEGIN);
+
+		//分析文件信息
+		PlumFileInfo sMsg;
+		ReadFile(hFileSrc, &sMsg, sizeof(sMsg), &dwRealReadPackMsg, NULL);
+		dwFileReadSize = sMsg.dwCryptFileSize;
+
+		//对比当前文件是否为需要解包的文件
+		if (!strcmp(pFileName, sMsg.cFileName))
+		{
+			char* pArray = NULL;
+
+			pArray = new char[dwFileReadSize];
+			ReadFile(hFileSrc, pArray, dwFileReadSize, &dwRealReadPackMsg, NULL);
+
+			//解包文件
+			CPlumCrypt* pCrypt = new CPlumCrypt;
+			char* pTemp = NULL;
+			DWORD dwSize = 0;
+
+			pCrypt->PlumDeCryptFileInMemoryStoreInMemoryExA((const void*)pArray, sMsg);
+			pCrypt->PlumGetArray(&pTemp, &dwSize);
+
+			memcpy_s((LPVOID)pValArr, dwValSize, pTemp, dwSize);
+
+			delete[] pArray;
+			delete pCrypt;
+
+			break;
+		}
+		
+	}
+
+	delete[] pFileAddress;
+
+	CloseHandle(hFileSrc);
+}
+
 //-----------------------------------------------------------------------------
 // @Function:	 PlumPackFilePackerA(const char* pSrcArr[], int nArrSize, char* pDest)
 // @Purpose: CPlumPack打包函数
