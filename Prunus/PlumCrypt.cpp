@@ -1154,6 +1154,10 @@ void PLUMCRYPT_CALLMETHOD CPlumCrypt::PlumDeCryptFileInMemoryStoreInFileExA(cons
 	dwWriteAllCount = sSrcArrayInfo.dwFileSize / nSrcSize + 1;
 	dwWriteLastSize = sSrcArrayInfo.dwFileSize % nSrcSize;
 	dwReadLastSize = sSrcArrayInfo.dwCryptFileSize % nSrcSize;
+	if (dwReadLastSize == 0)
+	{
+		dwReadLastSize = nSrcSize;
+	}
 
 	pSrcArr = (unsigned char*)malloc(nSrcSize*sizeof(unsigned char));
 	pDestArr = (unsigned char*)malloc(nDestSize*sizeof(unsigned char));
@@ -1233,6 +1237,10 @@ void PLUMCRYPT_CALLMETHOD CPlumCrypt::PlumDeCryptFileInMemoryStoreInMemoryExA(co
 	dwWriteAllCount = sSrcArrayInfo.dwFileSize / nSrcSize + 1;
 	dwWriteLastSize = sSrcArrayInfo.dwFileSize % nSrcSize;
 	dwReadLastSize = sSrcArrayInfo.dwCryptFileSize % nSrcSize;
+	if (dwReadLastSize == 0)
+	{
+		dwReadLastSize = nSrcSize;
+	}
 
 	pSrcArr = (unsigned char*)malloc(nSrcSize*sizeof(unsigned char));
 	pDestArr = (unsigned char*)malloc(nDestSize*sizeof(unsigned char));
